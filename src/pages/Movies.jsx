@@ -9,13 +9,13 @@ export default function Movies() {
     setValue(query);
   };
 
-  useEffect = () => {
+  useEffect(() => {
     const getMovie = async () => {
       const data = await searchMovie(value);
       console.log(data);
     };
     getMovie();
-  };
+  });
 
   return <SearchForm onChange={onChange} />;
 }
