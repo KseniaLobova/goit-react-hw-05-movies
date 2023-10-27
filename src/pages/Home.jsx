@@ -1,4 +1,4 @@
-// import { Loader } from 'components/Loader/Loader';
+import { Loader } from 'components/Loader/Loader';
 import { TrendList } from 'components/TrendList/TrendList';
 import { useEffect, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
@@ -30,7 +30,7 @@ export default function Home() {
     <div>
       <TrendList movies={trendMovies} />
       {error === true && <Toaster />}
-      {/* {loader === true && <Loader />} */}
+      {loader === true && <Loader />}
     </div>
   );
 }

@@ -15,7 +15,7 @@ export const fetchTrendingMovie = async () => {
 };
 
 export const searchMovie = async (query) => {
-    const data = await axios.get(`search/movie`,{
+  const { data } = await axios.get(`search/movie`,{
         params: {
             query:query,
             include_adult: false,
@@ -25,5 +25,35 @@ export const searchMovie = async (query) => {
             
 }
     })
-    console.log(data)
+  return data.results
+}
+
+export const fetchMovieById = async (id) => {
+  const { data } = await axios.get(`movie/${id}`, {
+    params: {
+        api_key: API_KEY,
+            language: 'en-US',
+    }
+  })
+ return data
+}
+
+export const fetchMovieCredits = async (id) => {
+  const { data } = await axios.get(`movie/${id}/credits`, {
+    params: {
+        api_key: API_KEY,
+            language: 'en-US',
+    }
+  })
+  return data.cast;
+}
+
+export const fetchMovieReviews = async (id) => {
+  const response = await axios.get(`movie/${id}/reviews`, {
+    params: {
+        api_key: API_KEY,
+            language: 'en-US',
+    }
+  })
+  return response
 }
