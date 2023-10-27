@@ -1,9 +1,10 @@
-import { CastInfo } from 'components/CastInfo/CastInfo';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { fetchMovieCredits } from 'server';
 import toast, { Toaster } from 'react-hot-toast';
 import { Loader } from 'components/Loader/Loader';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { CastInfo } from 'components/CastInfo/CastInfo';
+import { fetchMovieCredits } from 'server';
+
 export default function Cast() {
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);

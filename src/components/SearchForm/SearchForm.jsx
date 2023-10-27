@@ -1,32 +1,10 @@
-// import { FiSearch } from 'react-icons/fi';
-
-// export const SearchForm = ({ value, onChange }) => {
-//   const onSubmit = evt => {
-//     evt.preventDefault();
-//   };
-
-//   return (
-//     <form onSubmit={onSubmit}>
-//       <input
-//         placeholder="What movie do you search?"
-//         name="search"
-//         value={value}
-//         onChange={e => {
-//           onChange(e.target.value);
-//         }}
-//       />
-//       <FiSearch />
-//     </form>
-//   );
-// };
-
 import { Formik } from 'formik';
 import { FiSearch } from 'react-icons/fi';
-import { Seachbar, Searchform, Input, Btn } from './SearchForm.styled';
+import { Searchform, Input, Btn, Container } from './SearchForm.styled';
 
 export const SearchForm = ({ onChange }) => {
   return (
-    <Seachbar>
+    <Container>
       <Formik
         initialValues={{ text: '' }}
         onSubmit={(values, action) => {
@@ -47,6 +25,6 @@ export const SearchForm = ({ onChange }) => {
           </Btn>
         </Searchform>
       </Formik>
-    </Seachbar>
+    </Container>
   );
 };

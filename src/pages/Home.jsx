@@ -1,7 +1,9 @@
 import { Loader } from 'components/Loader/Loader';
-import { TrendList } from 'components/TrendList/TrendList';
-import { useEffect, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import { MovieList } from 'components/MovieList/MovieList';
+
+import { useEffect, useState } from 'react';
+
 import { fetchTrendingMovie } from 'server';
 
 export default function Home() {
@@ -28,7 +30,12 @@ export default function Home() {
 
   return (
     <div>
-      <TrendList movies={trendMovies} />
+      {trendMovies.length > 0 ? (
+        <MovieList movie={trendMovies} />
+      ) : (
+        'Sorry, something wrong. Please reload page'
+      )}
+
       {error === true && <Toaster />}
       {loader === true && <Loader />}
     </div>

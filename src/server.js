@@ -55,5 +55,5 @@ export const fetchMovieReviews = async (id) => {
             language: 'en-US',
     }
   })
-  return response
+  return response.data
 }

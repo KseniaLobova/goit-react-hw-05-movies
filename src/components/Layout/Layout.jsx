@@ -1,16 +1,19 @@
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Container, Link, Navigation } from './Layout.styled';
+import { Container, Link, Navigation, Header } from './Layout.styled';
 
 export const Layout = () => {
   return (
     <Container>
-      <header>
+      <Header>
         <Navigation>
           <Link to="/">Home</Link>
           <Link to="/movies">Movies</Link>
         </Navigation>
-      </header>
-      <Outlet />
+      </Header>
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </Container>
   );
 };

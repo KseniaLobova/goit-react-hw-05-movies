@@ -1,40 +1,52 @@
+import { Loader } from 'components/Loader/Loader';
+import toast, { Toaster } from 'react-hot-toast';
 import { SearchForm } from 'components/SearchForm/SearchForm';
 import { searchMovie } from 'server';
 import { useEffect, useState } from 'react';
-import { ResultsMovies } from 'components/ResultsMovies/ResultsMovies';
+
 import { useSearchParams } from 'react-router-dom';
+import { MovieList } from 'components/MovieList/MovieList';
 
 export default function Movies() {
-  // const [value, setValue] = useState('value');
+  const [error, setError] = useState(false);
+  const [loader, setLoader] = useState(false);
   const [fetchResults, setFetchResults] = useState([]);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
 
   const updateQueryString = query => {
+    if (query === '') {
+      return setSearchParams({});
+    }
     // const nextParams = query !== '' ? { query } : {};
     // console.log(nextParams);
     setSearchParams({ query: query });
   };
 
-  // const onChange = evt => {
-  //   const query = evt.target.value;
-  //   setSearchParams(value: query);
-  // };
-
   useEffect(() => {
-    const getMovie = async () => {
-      const data = await searchMovie(query);
-      setFetchResults(data);
-    };
-    getMovie();
+    try {
+      setLoader(true);
+      const getMovie = async () => {
+        const data = await searchMovie(query);
+        setFetchResults(data);
+      };
+      getMovie();
+    } catch (error) {
+      setError(true);
+      toast.error('Whoops! Error! Please reload this page!');
+    } finally {
+      setLoader(false);
+    }
   }, [query]);
 
   return (
     <div>
       <SearchForm onChange={updateQueryString} />
-      {/* {query !== '' && <ResultsMovies fetchQuery={fetchResults} />} */}
-      <ResultsMovies fetchQuery={fetchResults} />
+
+      {fetchResults.length > 0 && <MovieList movie={fetchResults} />}
+      {error === true && <Toaster />}
+      {loader === true && <Loader />}
     </div>
   );
 }
