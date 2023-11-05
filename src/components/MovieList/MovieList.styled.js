@@ -19,3 +19,10 @@ text-decoration:none;
 &:hover {
     color: rgb(159, 164, 166);
   }`
+
+export const Title = styled.h2`
+margin-left: 40px;
+margin-bottom: 30px;
+  color: rgb(59, 144, 235);
+font-style: italic;
+  font-weight:800;`
